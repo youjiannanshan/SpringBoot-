@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.fanyi.mapper.BookMapper">
+
+
+    <select id="findAllByTitleLikeOrAuthorLike" resultType="Book">
+        select * from book where title like #{keywords} or author like #{keywords}
+    </select>
+
+    <select id="findAllByCategory" resultType="Book" parameterType="Category">
+        select * from book where cid = #{id}
+    </select>
+
+
+    <select id="findAll" resultType="Book" >
+        select * from book ORDER BY `id` DESC
+    </select>
+
+    <insert id="addOrUpdate" parameterType="Book">
+        insert into book (id,cover,title,author,date,press,abs,cid)
+                    values (#{id},#{cover},#{title},#{author},#{date},#{press},#{abs},#{category.id})
+                    ON DUPLICATE KEY UPDATE
+                    id = #{id},
+                    cover = #{cover},
+                    title = #{title},
+                    author = #{author},
+                    date = #{date},
+                    press = #{press},
+                    abs = #{abs},
+                    cid = #{category.id}
+    </insert>
+
+    <delete id="deleteById">
+        delete from book where id = #{id}
+    </delete>
+
+<!--    <update id="updateBook" parameterType="Book">-->
+<!--        update book set cover = #{cover},-->
+<!--                        title = #{title},-->
+<!--                        author = #{author},-->
+<!--                        date = #{date},-->
+<!--                        press = #{press},-->
+<!--                        abs = #{abs},-->
+<!--                        cid = #{category.id}-->
+<!--                        where id = #{id}-->
+<!--    </update>-->
+</mapper>
+
+
