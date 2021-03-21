@@ -1,10 +1,10 @@
-# gitStudy
+# springboot
 
 #### 介绍
-加油
+图书查询与管理项目
 
 #### 软件架构
-软件架构说明
+springboot+shiro+mybatis+JPA
 
 
 #### 安装教程
